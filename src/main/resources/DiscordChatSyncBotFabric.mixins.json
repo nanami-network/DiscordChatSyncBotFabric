@@ -2,9 +2,10 @@
   "required": true,
   "minVersion": "0.8",
   "package": "net.koutachan.discordchatsyncbotfabric.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_11",
   "mixins": [
-    "MixinServerChatHandler"
+    "MixinServerChatHandler",
+    "MixinPlayerJoin"
   ],
   "injectors": {
     "defaultRequire": 1
