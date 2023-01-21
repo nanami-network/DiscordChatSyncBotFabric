@@ -12,7 +12,7 @@ import java.util.Base64;
 public class DiscordUtils {
     public static String retrieveThumbnail(ServerPlayerEntity player) {
         final boolean localOptions = DiscordChatSyncBotFabric.getConfigManager().getBoolean("useLocalOptions");
-        return localOptions ? "https://skin.7mi.site/?url=" + getTextureUrl(player) : "https://cravatar.eu/avatar/" + player.getName() + "64.png";
+        return localOptions ? "https://skin.7mi.site/?url=" + getTextureUrl(player) : "https://cravatar.eu/avatar/" + player.getName() + "/64.png";
     }
 
     public static String getTextureUrl(ServerPlayerEntity player) {
