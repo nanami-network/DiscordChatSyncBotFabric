@@ -15,6 +15,7 @@ public class DiscordChatSyncBotFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        Runtime.getRuntime().addShutdownHook(new Thread(jda::shutdown));
     }
 
     public static ConfigManager getConfigManager() {
