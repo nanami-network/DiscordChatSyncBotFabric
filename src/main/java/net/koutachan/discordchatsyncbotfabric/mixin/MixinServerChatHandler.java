@@ -34,7 +34,7 @@ public class MixinServerChatHandler {
             TextChannel textChannel = DiscordChatSyncBotFabric.getJDA().getTextChannelById(DiscordChatSyncBotFabric.getConfigManager().getString("textChannelId"));
             if (textChannel != null) {
                 // コマンドは処理しない
-                if (!packet.getChatMessage().startsWith("/")){
+                if (packet.getChatMessage().startsWith("/")){
                     return;
                 }
                 textChannel.sendMessageEmbeds(new EmbedBuilder()
