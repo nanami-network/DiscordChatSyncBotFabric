@@ -1,5 +1,6 @@
 package net.koutachan.discordchatsyncbotfabric.discord;
 
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -24,10 +25,18 @@ public class DiscordEvent extends ListenerAdapter {
         if (event.isFromGuild() && event.isFromType(ChannelType.TEXT) && !event.getAuthor().isBot() && !event.isWebhookMessage()) {
             TextChannel textChannel = DiscordChatSyncBotFabric.getJDA().getTextChannelById(DiscordChatSyncBotFabric.getConfigManager().getString("textChannelId"));
             if (textChannel.getIdLong() == event.getGuildChannel().asTextChannel().getIdLong()) {
-                String message = event.getMessage().getContentRaw();
+                StringBuilder message = new StringBuilder(event.getMessage().getContentRaw());
                 if (message.length() > 100) {
-                    message = message.substring(0, 100);
+                    message = new StringBuilder(message.substring(0, 100));
                 }
+
+                if (event.getMessage().getAttachments().size() > 0){
+                    for (Message.Attachment attachment : event.getMessage().getAttachments()){
+                        message.append("\n");
+                        message.append(attachment.getProxyUrl());
+                    }
+                }
+
                 for (ServerPlayerEntity player : ((MinecraftServer) FabricLoader.getInstance().getGameInstance()).getPlayerManager().getPlayerList()) {
                     player.sendMessage(new LiteralText("§b[Discord] §r" + message + " (by " + event.getMember().getEffectiveName() + ")"), false);
                 }
