@@ -14,6 +14,11 @@ import java.util.List;
 
 public class CommonUtils {
     public static String translateGoogle(String message) {
+
+        if (message.getBytes().length != message.length()){
+            return message;
+        }
+
         try {
             Request request = new Request.Builder()
                     .url("http://www.google.com/transliterate?langpair=ja-Hira|ja&text=" + URLEncoder.encode(translateCharacter(message), StandardCharsets.UTF_8))
