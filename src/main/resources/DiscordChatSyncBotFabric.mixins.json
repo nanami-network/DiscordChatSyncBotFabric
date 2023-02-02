@@ -4,7 +4,6 @@
   "package": "net.koutachan.discordchatsyncbotfabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinServerChatHandler",
     "MixinPlayerJoin"
   ],
   "client": [],
