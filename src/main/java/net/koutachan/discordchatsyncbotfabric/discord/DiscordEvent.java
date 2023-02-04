@@ -9,7 +9,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.koutachan.discordchatsyncbotfabric.DiscordChatSyncBotFabric;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 public class DiscordEvent extends ListenerAdapter {
     @Override
@@ -30,7 +30,7 @@ public class DiscordEvent extends ListenerAdapter {
                 }
 
                 for (ServerPlayerEntity player : ((MinecraftServer) FabricLoader.getInstance().getGameInstance()).getPlayerManager().getPlayerList()) {
-                    player.sendMessage(new LiteralText("§b[Discord] §r" + message + " (by " + event.getMember().getEffectiveName() + ")"), false);
+                    player.sendMessage(Text.literal("§b[Discord] §r" + message + " (by " + event.getMember().getEffectiveName() + ")"), false);
                 }
             }
         }
