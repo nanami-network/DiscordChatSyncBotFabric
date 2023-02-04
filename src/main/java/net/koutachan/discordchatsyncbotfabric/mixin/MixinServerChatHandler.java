@@ -28,8 +28,9 @@ public class MixinServerChatHandler {
     @Final
     private MinecraftServer server;
 
-    @Inject(method = "onGameMessage", at = @At(value = "HEAD"))
+    @Inject(method = "onChatMessage", at = @At(value = "HEAD"))
     public void onGameMessage(ChatMessageC2SPacket packet, CallbackInfo ci) {
+        if (packet.getChatMessage().startsWith("/")) return;
         new Thread(() -> {
             TextChannel textChannel = DiscordChatSyncBotFabric.getJDA().getTextChannelById(DiscordChatSyncBotFabric.getConfigManager().getString("textChannelId"));
             if (textChannel != null) {

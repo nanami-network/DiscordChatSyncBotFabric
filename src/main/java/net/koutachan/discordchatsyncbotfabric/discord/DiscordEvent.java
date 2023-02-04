@@ -5,18 +5,10 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.impl.game.minecraft.launchwrapper.FabricClassTransformer;
-import net.fabricmc.loader.impl.game.minecraft.launchwrapper.FabricServerTweaker;
-import net.fabricmc.loader.impl.launch.server.FabricServerLauncher;
 import net.koutachan.discordchatsyncbotfabric.DiscordChatSyncBotFabric;
-import net.minecraft.network.MessageType;
-import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Util;
-import org.spongepowered.asm.mixin.FabricUtil;
 
 public class DiscordEvent extends ListenerAdapter {
     @Override
