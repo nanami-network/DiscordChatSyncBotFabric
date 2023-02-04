@@ -34,13 +34,17 @@ public class MixinServerChatHandler {
         new Thread(() -> {
             TextChannel textChannel = DiscordChatSyncBotFabric.getJDA().getTextChannelById(DiscordChatSyncBotFabric.getConfigManager().getString("textChannelId"));
             if (textChannel != null) {
-                textChannel.sendMessageEmbeds(new EmbedBuilder()
-                        .setColor(Color.ORANGE)
-                        .setDescription("```" + CommonUtils.translateGoogle(packet.getChatMessage()) + "```")
-                        .setThumbnail(DiscordUtils.retrieveThumbnail(player))
-                        .setAuthor(player.getName().getString(), "https://mine.ly/" + player.getName().getString())
-                        .setTimestamp(Instant.now())
-                        .build()).queue();
+                // コマンドは処理しない
+                if (!packet.getChatMessage().startsWith("/")){
+                    textChannel.sendMessageEmbeds(new EmbedBuilder()
+                            .setColor(Color.ORANGE)
+                            .setDescription("```" + CommonUtils.translateGoogle(packet.getChatMessage()) + "```")
+                            .setThumbnail(DiscordUtils.retrieveThumbnail(player))
+                            .setAuthor(player.getName().getString(), "https://mine.ly/" + player.getName().getString())
+                            .setTimestamp(Instant.now())
+                            .build()).queue();
+                }
+
             }
         }).start();
     }
